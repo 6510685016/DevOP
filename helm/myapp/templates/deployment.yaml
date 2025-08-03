@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myapp
+  name: cli-exc
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: myapp
+      app: cli-exc
   template:
     metadata:
       labels:
-        app: myapp
+        app: cli-exc
     spec:
       containers:
-        - name: myapp
+        - name: cli-exc
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          ports:
-            - containerPort: 80
+          command: ["cli-exc"]
+          args: ["help"]
